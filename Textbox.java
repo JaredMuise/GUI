@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.*;
+import java.awt.Color;
 /**
  * Write a description of class Textbox here.
  * 
@@ -14,40 +14,51 @@ public class Textbox extends Actor
     private Color foreground;
     private Color background;
     
-    public Textbox(String message, int fs, boolean b, Color fg, Color bg )
+    public Textbox(String message, int fs,boolean b,Color fg,Color bg)
     {
-        fontSize = fs;
         border = b;
+        fontSize = fs;
         foreground = fg;
         background = bg;
         
         img = new GreenfootImage(message, fontSize, foreground, background);
-        
-        display();
-    }
-   
-    public Textbox(String message)
-    {
-        img = new GreenfootImage(message, fontSize, foreground, background);
-        
         display();
     }
     
     /**
-     * display will determine if boarder is true 
-     * 
-     * @param There are no parameters
+     * Textbox creates an new Greenfootimage and runs display method.
+     * @param String message is string that shows text.
+     * @return Nothing is return.
+     */
+    public void Textbox( String message)
+    {
+        img = new GreenfootImage(message, fontSize, foreground, background);
+        display();
+    }
+    
+    /**
+     * display sets image to img and draws a black rectangle.
+     * @param There are no paramaters.
      * @return Nothing is returned.
      */
-    public void display()
+    private void display()
     {
         setImage(img);
-        
-        if( border == true)
+        if(border == true)
         {
-            img.setColor( Color.BLACK );
-            img.drawRect(0, 0, img.getWidth()-1, img.getHeight()-1);
+            img.setColor(Color.BLACK);
+            img.drawRect( 0, 0, img.getWidth() - 1, img.getHeight() - 1);
             setImage(img);
+            
         }
     }
+    
+    /**
+     * Act - do whatever the Textbox wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        // Add your action code here.
+    }    
 }

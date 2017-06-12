@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 /**
  * Write a description of class MenuCommands here.
  * 
@@ -8,5 +8,5 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public interface MenuCommands  
 {
     public void execute(int idx, World w);
+   
 }
-

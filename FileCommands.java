@@ -1,45 +1,41 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 /**
  * Write a description of class FileCommands here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class FileCommands implements MenuCommands  
+public class FileCommands implements MenuCommands 
 {
-    
-     
     /**
-     * execute determine what to print depending on the idx value 
-     * 
-     * @param - idx is an integer value that will be compered to numbers
-     *        - w is a reference to the world
+     * execute prints out different sentences with the names of commands.
+     * @param idx is a integer that comes from commands string and World w is a world.
      * @return Nothing is returned.
      */
     public void execute(int idx, World w)
     {
-        if( idx == 0)
+        UIMainWorld guiWorld = (UIMainWorld)w;
+        
+        if (idx == 0)
         {
-            System.out.println("Running New Command...");
+            guiWorld.salesScreen();
         }
-        else if( idx == 1)
+        else if(idx == 1)
         {
-            System.out.println("Running Open Command...");
+            guiWorld.startScreen();
         }
-        else if( idx == 2)
+        else if(idx == 2)
         {
-            System.out.println("Running Save Command...");
+            guiWorld.thankYou();
         }
-        else if( idx == 3)
-        {
-            System.out.println("Running Close Command...");
-        }
-        else if( idx == 4)
-        {
-            System.out.println("Running Exit Command...");
-        }
+        
     }
     
-    
-  
+    /**
+     * Constructor for objects of class FileCommands
+     */
+    public FileCommands()
+    {
+        
+    }
 }

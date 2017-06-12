@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.*;
+import java.awt.Color;
 /**
  * Write a description of class Label here.
  * 
@@ -13,8 +13,15 @@ public class Label extends Actor
     private Color lineColor = Color.BLACK;
     private Color fillColor = Color.WHITE;
     
-    
     private final Color TRANSPARENT = new Color(0, 0, 0, 0);
+    /**
+     * Act - do whatever the Label wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        // Add your action code here.
+    }
     
     public Label(String v, int fs)
     {
@@ -26,13 +33,12 @@ public class Label extends Actor
     
     public Label(int v, int fs)
     {
-       this(Integer.toString(v), fs);
+        this(Integer.toString(v), fs);
     }
     
     /**
-     * setValue sets value to new string value and updates the image
-     * 
-     * @param newValue is a new string that will be shown by the value
+     * setValue sets value equal to newValue and runs update Image method.
+     * @param String newValue that shows the new, updated value.
      * @return Nothing is returned.
      */
     public void setValue(String newValue)
@@ -41,10 +47,9 @@ public class Label extends Actor
         updateImage();
     }
     
-     /**
-     * setValue sets value to new interger value and updates the image
-     * 
-     * @param newValue is a new int that will be shown by the value
+    /**
+     * setValue sets value equal to newValue string and runs Image method.
+     * @param integer newValue that takes the new value.
      * @return Nothing is returned.
      */
     public void setValue(int newValue)
@@ -54,37 +59,34 @@ public class Label extends Actor
     }
     
     /**
-     * setlineColor sets the line color with a new color and updates the image
-     * 
-     * @param newColor is newColor that will be shown by lineColor
+     * setFill sets fillColor to newColor and runs update Image method.
+     * @param newColor is a Color.
      * @return Nothing is returned.
      */
-    public void setlineColor(Color newColor)
-    {
-        lineColor = newColor;
-        updateImage();
-    }
-    
-    /**
-     * setfillColor fills the color with a new color and updates the image
-     * 
-     * @param newColor is newColor that will be shown by fillColor
-     * @return Nothing is returned.
-     */
-    public void setfillColor(Color newColor)
+    public void setFill(Color newColor)
     {
         fillColor = newColor;
         updateImage();
     }
     
     /**
-     * updateImage updates the image
-     * 
-     * @param There are no paramters 
+     * setLine sets lineColor equal to newColor and runs update Image method.
+     * @param newColor is a Color.
      * @return Nothing is returned.
      */
-    private void updateImage()
+    public void setLine(Color newColor)
     {
-        setImage( new GreenfootImage(value, fontSize, fillColor, TRANSPARENT, lineColor) );
+        lineColor = newColor;
+        updateImage();
+    }
+    
+    /**
+     * updateImage updates the new image with right font and color.
+     * @param There are no parameters.
+     * @return Nothing is returned. 
+     */
+    public void updateImage()
+    {
+        setImage(new GreenfootImage(value, fontSize, fillColor, TRANSPARENT, lineColor));
     }
 }

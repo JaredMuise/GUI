@@ -20,7 +20,6 @@ public class Menu extends Actor
     private int titleHeight;
     private int menuHeight;
     
-    
     public Menu(String tb, String items, int fs, Color fgMain, Color bgMain, Color fgSecond, Color bgSecond, MenuCommands mc)
     {
         menuCommands = mc;
@@ -29,27 +28,57 @@ public class Menu extends Actor
         mainBG = bgMain;
         secondFG = fgSecond;
         secondBG = bgSecond;
+        titleBar = new Textbox( tb, fontSize, true, mainFG, mainBG);
+        menuItems = new Textbox( items, fontSize, true, secondFG, secondBG);
         
-        titleBar = new Textbox(tb, fontSize, true, mainFG, mainBG);
-        menuItems = new Textbox(items, fontSize, true, secondFG, secondBG);
-    }
-    
-    /**
-     * addedToWorld is the method that is called when the objected is added to the world
-     * 
-     * @param w is a refrence to the world
-     * @return Nothing is returned.
-     */
-    public void addedToWorld(World w)
-    {
-         w.addObject(titleBar,getX(), getY());
-         titleHeight = titleBar.getImage().getHeight();
-         menuHeight = menuItems.getImage().getHeight();
     }
     
     public Menu()
     {
-        this("not intialized", "none", 24, Color.BLACK, Color.lightGray, Color.BLACK, Color.WHITE, null);
+        this("not initialized", "none", 24, Color.BLACK, Color.lightGray, Color.BLACK, Color.WHITE, null);
+    }
+    
+    /**
+     * addedToWorld adds new title bar object with the right size.
+     * @param World w is reference to the world.
+     * @return Nothing is returned.
+     */
+    public void addedToWorld(World w)
+    {
+        w.addObject(titleBar ,getX(), getY());
+        titleHeight = (titleBar.getImage().getHeight());
+        menuHeight = (menuItems.getImage().getHeight());
+    }
+    
+    /**
+     * handleMouse checks if buttons are pressed and if so adds object or removes it.
+     * @param There are no parameters.
+     * @return Nothing is returned.
+     */
+    public void handleMouse()
+    {
+        MouseInfo mi;
+        int menuIndex;
+        
+        if( Greenfoot.mouseClicked(titleBar))
+        {
+            if( visible == false)
+            {
+                getWorld().addObject(menuItems, getX(), getY() + (titleHeight + menuHeight)/2);
+            }
+            else if ( visible = true)
+            {
+                getWorld().removeObject(menuItems);
+            }
+            visible = !visible;
+        }
+        else if( Greenfoot.mouseClicked(menuItems))
+        {
+            mi = Greenfoot.getMouseInfo();
+            menuIndex = ( (mi.getY() - menuItems.getY() + menuHeight / 2) - 1 ) / fontSize;
+            getWorld().removeObject(menuItems);
+            menuCommands.execute( menuIndex, getWorld());
+        }
     }
     
     /**
@@ -59,39 +88,5 @@ public class Menu extends Actor
     public void act() 
     {
         handleMouse();
-    }
-    
-    /**
-     * handleMouse determines if the mouse is clicked 
-     * 
-     * @param There are no parameters
-     * @return Nothing is returned.
-     */
-    public void handleMouse()
-    {
-        MouseInfo mi;
-        int menuIndex;
-        if(Greenfoot.mouseClicked( titleBar ) )
-        {
-            if(visible == false )
-            {
-                getWorld().addObject(menuItems, getX(), getY() + (titleHeight + menuHeight)/2);
-            }
-            else if( visible == true )
-            {
-                getWorld().removeObject(menuItems);
-            }
-            visible = !visible;
-        }
-        else if(Greenfoot.mouseClicked( menuItems ) )
-        {
-            mi = Greenfoot.getMouseInfo();
-            menuIndex = ( (mi.getY() - menuItems.getY() + menuHeight /2) - 1)/fontSize;
-            menuCommands.execute(menuIndex, getWorld());
-            visible = !visible;
-            getWorld().removeObject(menuItems);
-        }
-    }
+    }    
 }
-    
-    
